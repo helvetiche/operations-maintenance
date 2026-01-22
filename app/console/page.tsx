@@ -62,7 +62,7 @@ export default function ConsolePage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="console-page-container flex min-h-screen bg-gray-50">
       <Sidebar 
         user={user} 
         onSignOut={logout} 
@@ -73,7 +73,7 @@ export default function ConsolePage() {
         onNavLayoutChange={setNavLayout}
       />
       
-      <main ref={mainRef} className="flex-1 lg:ml-80 lg:mr-80 xl:mr-96 p-4 lg:p-8 pb-24 lg:pb-8 bg-gradient-to-br from-gray-50 to-gray-100 overflow-y-auto overflow-x-hidden">
+      <main ref={mainRef} className="console-main flex-1 lg:ml-80 lg:mr-80 xl:mr-96 p-4 lg:p-8 pb-24 lg:pb-8 bg-gradient-to-br from-gray-50 to-gray-100 overflow-y-auto overflow-x-hidden">
         {/* Background Image */}
         <div 
           className="fixed inset-0 lg:left-80 lg:right-80 xl:right-96 opacity-30 pointer-events-none z-0"

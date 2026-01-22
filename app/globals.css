@@ -218,25 +218,25 @@ footer {
   --pwa-window-max-height: 1080px;
 }
 
-/* Only apply PWA constraints on desktop */
+/* Only apply PWA constraints on desktop - but allow internal scrolling */
 @media (min-width: 1024px) {
   html {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: hidden; /* Keep this to prevent document scrolling */
   }
   
   body {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: hidden; /* Keep this to prevent document scrolling */
     max-width: var(--pwa-window-max-width, 100vw);
     max-height: var(--pwa-window-max-height, 100vh);
     min-width: var(--pwa-window-min-width, 1024px);
     min-height: var(--pwa-window-min-height, 768px);
   }
   
-  /* Constrain the main app container */
+  /* Constrain the main app container but allow internal scrolling */
   #__next,
   body > div:first-child {
     width: 100%;
@@ -245,8 +245,29 @@ footer {
     max-height: var(--pwa-window-max-height, 100vh);
     min-width: var(--pwa-window-min-width, 1024px);
     min-height: var(--pwa-window-min-height, 768px);
-    overflow: hidden;
+    overflow: hidden; /* Prevent document scrolling but allow child scrolling */
     margin: 0 auto;
+  }
+  
+  /* Ensure main content areas can scroll */
+  main[class*="overflow-y-auto"] {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: 100vh !important;
+  }
+  
+  /* Fix for console page main container */
+  .console-main {
+    height: 100vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    position: relative !important;
+  }
+  
+  /* Ensure the console page container allows scrolling */
+  .console-page-container {
+    height: 100vh !important;
+    overflow: hidden !important;
   }
 }
 
