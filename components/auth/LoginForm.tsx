@@ -63,7 +63,7 @@ export const LoginForm = () => {
         </Alert>
         <Button
           type="button"
-          variant="outline"
+          variant="secondary"
           fullWidth
           onClick={() => {
             resetPasswordless();

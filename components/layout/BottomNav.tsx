@@ -181,7 +181,7 @@ export const BottomNav = ({ activeView = "overview", onNavigate, scrollContainer
           
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Button
-              variant="outline"
+              variant="secondary"
               onClick={handleCancelLogout}
               fullWidth
               disabled={logoutLoading}
