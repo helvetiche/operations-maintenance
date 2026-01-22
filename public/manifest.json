@@ -1,0 +1,58 @@
+{
+  "name": "NIA Operation & Maintenance",
+  "short_name": "NIA O&M",
+  "description": "Automated Email for Reminding Employee - National Irrigation Administration Operation and Maintenance System",
+  "start_url": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "background_color": "#065f46",
+  "theme_color": "#065f46",
+  "orientation": "any",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["productivity", "business", "utilities"],
+  "icons": [
+    {
+      "src": "/nia-logo.png",
+      "sizes": "750x750",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/nia-logo-mobile.png",
+      "sizes": "1000x1000",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/nia-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/nia-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Console",
+      "short_name": "Console",
+      "description": "Open the main console dashboard",
+      "url": "/console",
+      "icons": [
+        {
+          "src": "/nia-logo.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false
+}

@@ -1,0 +1,35 @@
+name: Send Reminders Cron
+
+on:
+  schedule:
+    # Run every 5 minutes (minimum interval allowed by GitHub Actions)
+    - cron: "*/5 * * * *" 
+  # Allow manual triggering for testing
+  workflow_dispatch:
+
+jobs:
+  trigger-cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Reminder Endpoint
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          VERCEL_URL: ${{ secrets.VERCEL_URL }}
+        run: |
+          # Debug: Show what we're working with
+          echo "VERCEL_URL value: '${VERCEL_URL}'"
+          echo "VERCEL_URL length: ${#VERCEL_URL}"
+          
+          # Remove https:// if present
+          CLEAN_URL="${VERCEL_URL#https://}"
+          CLEAN_URL="${CLEAN_URL#http://}"
+          CLEAN_URL="${CLEAN_URL%/}"
+          
+          echo "Clean URL: ${CLEAN_URL}"
+          FULL_URL="https://${CLEAN_URL}/api/cron/send-reminders"
+          echo "Calling: ${FULL_URL}"
+          
+          curl -X GET \
+            -H "Authorization: Bearer ${CRON_SECRET}" \
+            -H "User-Agent: github-actions" \
+            "${FULL_URL}"
