@@ -856,7 +856,7 @@ export const CalendarView = ({ }: CalendarViewProps) => {
       {/* Schedule Details Modal */}
       {mounted && selectedDate && createPortal(
         <div 
-          className="fixed inset-0 bg-black/50 z-[9999] flex items-center justify-center p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 bg-black/50 z-[10001] flex items-center justify-center p-4 animate-in fade-in duration-200"
           onClick={handleCloseModal}
           role="dialog"
           aria-modal="true"

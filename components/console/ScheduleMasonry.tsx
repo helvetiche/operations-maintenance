@@ -53,8 +53,8 @@ export const ScheduleMasonry = ({
 }: ScheduleMasonryProps) => {
   const childrenArray = useMemo(() => Children.toArray(children), [children]);
   const columns = useMedia(
-    ['(min-width:1500px)', '(min-width:1000px)', '(min-width:600px)', '(min-width:400px)'],
-    [3, 2, 2, 1],
+    ['(min-width:1024px)', '(min-width:640px)'],
+    [2, 1],
     1
   );
 
@@ -189,7 +189,7 @@ export const ScheduleMasonry = ({
   }, [grid, heights, stagger, animateFrom, duration, ease]);
 
   return (
-    <div ref={containerRef} className="relative w-full" style={{ minHeight: '100vh' }}>
+    <div ref={containerRef} className="relative w-fullg" style={{ minHeight: '100vh' }}>
       {childrenArray.map((child, index) => {
         const item = grid[index];
         if (!item) return null;
