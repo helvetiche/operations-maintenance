@@ -223,13 +223,11 @@ footer {
   html {
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Keep this to prevent document scrolling */
   }
   
   body {
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Keep this to prevent document scrolling */
     max-width: var(--pwa-window-max-width, 100vw);
     max-height: var(--pwa-window-max-height, 100vh);
     min-width: var(--pwa-window-min-width, 1024px);
@@ -245,7 +243,6 @@ footer {
     max-height: var(--pwa-window-max-height, 100vh);
     min-width: var(--pwa-window-min-width, 1024px);
     min-height: var(--pwa-window-min-height, 768px);
-    overflow: hidden; /* Prevent document scrolling but allow child scrolling */
     margin: 0 auto;
   }
   

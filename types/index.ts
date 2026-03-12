@@ -75,7 +75,7 @@ export interface Schedule {
 // Task Completion Types
 export interface TaskCompletion {
   id: string;
-  scheduleId: string;
+  scheduleId: string; // Keep for backward compatibility and queries
   userId: string;
   completedAt: string; // ISO timestamp
   completedBy: string; // User email
@@ -84,6 +84,11 @@ export interface TaskCompletion {
   periodEnd: string; // ISO timestamp - end of the period
   deadlineType: ScheduleDeadlineType;
   notes?: string;
+  // Store schedule details to prevent "Unknown Task" when schedule is deleted
+  scheduleTitle: string;
+  scheduleDescription: string;
+  personAssigned: string;
+  personEmail: string;
 }
 
 export interface ScheduleWithCompletion extends Schedule {

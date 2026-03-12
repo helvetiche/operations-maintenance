@@ -348,7 +348,7 @@ export async function exportReportsToExcel(
       const row = monthSheet.getRow(currentRow);
       row.values = [
         index + 1,
-        schedule?.title || "Unknown Task",
+        completion.scheduleTitle || schedule?.title || "Unknown Task",
         completedDate.toLocaleTimeString("en-US", {
           hour: "2-digit",
           minute: "2-digit",

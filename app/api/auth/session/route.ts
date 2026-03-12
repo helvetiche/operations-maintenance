@@ -18,7 +18,7 @@ export const GET = createApiHandler(
   {
     allowedMethods: ["GET"],
     rateLimit: {
-      maxRequests: 50,
+      maxRequests: 200, // Increased from 50 to 200
       windowMs: 60 * 1000, // 1 minute
     },
   }

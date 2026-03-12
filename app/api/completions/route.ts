@@ -115,6 +115,11 @@ export const POST = createApiHandler(
       periodStart,
       periodEnd,
       deadlineType: deadlineType as ScheduleDeadlineType,
+      // Store schedule details to prevent "Unknown Task" when schedule is deleted
+      scheduleTitle: scheduleData?.title || "Unknown Task",
+      scheduleDescription: scheduleData?.description || "",
+      personAssigned: assignedName,
+      personEmail: assignedEmail,
       ...(notes && { notes }),
     };
 

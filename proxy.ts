@@ -48,6 +48,16 @@ const rateLimitStore = new Map<
   { count: number; resetTime: number }
 >();
 
+// Clean up expired entries every hour
+setInterval(() => {
+  const now = Date.now();
+  for (const [clientId, record] of rateLimitStore.entries()) {
+    if (now > record.resetTime) {
+      rateLimitStore.delete(clientId);
+    }
+  }
+}, 60 * 60 * 1000); // 1 hour
+
 const checkRateLimit = (
   clientId: string,
   maxRequests: number = 100,

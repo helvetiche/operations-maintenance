@@ -101,8 +101,8 @@ export const Reports = () => {
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter((completion) => {
-        const schedule = scheduleMap.get(completion.scheduleId);
-        const taskTitle = schedule?.title.toLowerCase() || "";
+        // Use stored schedule title from completion, fallback to schedule lookup
+        const taskTitle = (completion.scheduleTitle || scheduleMap.get(completion.scheduleId)?.title || "").toLowerCase();
         const completedBy = completion.completedBy.toLowerCase();
         return taskTitle.includes(query) || completedBy.includes(query);
       });
@@ -145,8 +145,9 @@ export const Reports = () => {
     });
   }, []);
 
-  const getScheduleTitle = useCallback((scheduleId: string) => {
-    return scheduleMap.get(scheduleId)?.title || "Unknown Task";
+  const getScheduleTitle = useCallback((completion: any) => {
+    // Use stored schedule title from completion, fallback to schedule lookup for backward compatibility
+    return completion.scheduleTitle || scheduleMap.get(completion.scheduleId)?.title || "Unknown Task";
   }, [scheduleMap]);
 
   const handleMonthChange = useCallback((month: number) => {
@@ -515,7 +516,7 @@ export const Reports = () => {
                       >
                         <td className="py-3 lg:py-4 px-4 lg:px-6 border-r border-emerald-900/10">
                           <p className="text-sm lg:text-base font-regular text-emerald-900">
-                            {getScheduleTitle(completion.scheduleId)}
+                            {getScheduleTitle(completion)}
                           </p>
                         </td>
                         <td className="py-3 lg:py-4 px-4 lg:px-6 border-r border-emerald-900/10">

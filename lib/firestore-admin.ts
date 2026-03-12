@@ -94,6 +94,11 @@ export const getCompletions = async (): Promise<TaskCompletion[]> => {
       periodEnd: data.periodEnd,
       deadlineType: data.deadlineType,
       notes: data.notes,
+      // New fields for storing schedule details
+      scheduleTitle: data.scheduleTitle,
+      scheduleDescription: data.scheduleDescription,
+      personAssigned: data.personAssigned,
+      personEmail: data.personEmail,
     } as TaskCompletion;
   });
 };
