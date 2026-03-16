@@ -1,4 +1,4 @@
-import ExcelJS from "exceljs";
+  import ExcelJS from "exceljs";
 import { Schedule, Employee, TaskCompletion } from "@/types";
 import { calculateNextDeadline } from "./deadline-calculator";
 
@@ -92,10 +92,10 @@ export async function exportSchedulesToExcel(schedules: Schedule[]): Promise<Buf
       personAssigned: schedule.personAssigned,
       personEmail: schedule.personEmail,
       deadlineType: formatDeadlineType(schedule.deadline),
-      nextDeadline: nextDeadline.toLocaleDateString(),
+      nextDeadline: nextDeadline.toLocaleDateString("en-PH", { timeZone: "Asia/Manila" }),
       reminder: formatReminderDate(schedule.reminderDate),
       status: schedule.status.toUpperCase(),
-      createdAt: new Date(schedule.createdAt).toLocaleDateString(),
+      createdAt: new Date(schedule.createdAt).toLocaleDateString("en-PH", { timeZone: "Asia/Manila" }),
     });
   });
 
@@ -189,7 +189,7 @@ export async function exportEmployeesToExcel(
       email: employee.email || "N/A",
       position: employee.position,
       assignments: assignmentCounts?.[employee.id] || 0,
-      createdAt: new Date(employee.createdAt).toLocaleDateString(),
+      createdAt: new Date(employee.createdAt).toLocaleDateString("en-PH", { timeZone: "Asia/Manila" }),
     });
   });
 
@@ -273,8 +273,10 @@ export async function exportReportsToExcel(
   const completionsByDay: Record<number, TaskCompletion[]> = {};
   
   completions.forEach((completion) => {
+    // Convert to Manila timezone for proper day grouping
     const date = new Date(completion.completedAt);
-    const day = date.getDate();
+    const manilaDate = new Date(date.toLocaleString("en-US", { timeZone: "Asia/Manila" }));
+    const day = manilaDate.getDate();
     if (!completionsByDay[day]) {
       completionsByDay[day] = [];
     }
@@ -349,7 +351,8 @@ export async function exportReportsToExcel(
       row.values = [
         index + 1,
         completion.scheduleTitle || schedule?.title || "Unknown Task",
-        completedDate.toLocaleTimeString("en-US", {
+        completedDate.toLocaleTimeString("en-PH", {
+          timeZone: "Asia/Manila",
           hour: "2-digit",
           minute: "2-digit",
           hour12: true,
